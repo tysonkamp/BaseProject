@@ -30,6 +30,10 @@ resource "aws_subnet" "base-project-subnet-2" {
   cidr_block = "10.0.2.0/24"
   tags = { Name = "base-project-subnet-2" }
 }
+# NAT GW base-project-natgw-1, associate with subnet 1 & 2
+# Create NACL 1 allow internet GW only to ALB 1, specific protocols and ports (80?, 443?, 22?). Outbound ephemeral ports?  1024-65535
+# Create NACL 2 allow public subnet to private subnet 1, appropriate protocol and port(s) for web layer
+# Creaet NACP 3 allow private subnet 1 to priv subnet 2, appropriate protocol and posrt(s) for dbs
 
 resource "aws_internet_gateway" "base-project-internet-gateway-1"{
   vpc_id = aws_vpc.base-project-vpc.id
